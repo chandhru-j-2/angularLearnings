@@ -6,7 +6,8 @@
 <button (click)="addTodo()">Add</button>
 
 <ul>
-    <li *ngFor="let todo of todoList">
-        {{todo.title}} - {{todo.desc}} - {{todo.date}}
-    </li>
+  <li *ngFor="let todo of todoList; index as i">
+    {{ todo.title }} - {{ todo.desc }} - {{ todo.date | date : 'dd.MM.yyyy' }}
+    <button (click)="deleteTodo(i)">Delete</button>
+  </li>
 </ul>

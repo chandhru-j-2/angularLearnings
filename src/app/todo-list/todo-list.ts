@@ -30,4 +30,8 @@ export class TodoList {
       this.newDate = new Date();
     }
   }
+
+  deleteTodo(index: number){
+    this.todoList.splice(index,1);
+  }
 }
