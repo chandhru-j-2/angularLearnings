@@ -3,7 +3,7 @@
 <input [(ngModel)]="newTitle" placeholder="Enter Title" />
 <input [(ngModel)]="newDesc" placeholder="Enter Description" />
 <input [(ngModel)]="newDate" type="date" />
-<button (click)="addTodo()">Add</button>
+<button (click)="addTodo()" [disabled]="doDisableAdd">Add</button>
 
 <ul>
   <li *ngFor="let todo of todoList; index as i">

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Todos } from '../models/todos';
-import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-todo-list',
@@ -8,6 +7,7 @@ import { OnInit } from '@angular/core';
   templateUrl: './todo-list.html',
   styleUrl: './todo-list.css',
 })
+
 export class TodoList {
   todoList: Todos[] = [];
   ngOnInit(): void {
@@ -16,7 +16,21 @@ export class TodoList {
   }
   newTitle: string = '';
   newDesc: string = '';
-  newDate: Date = new Date();
+  newDate: string = '';
+
+  get doDisableAdd(): boolean {
+    return !(this.newTitle.trim().length && this.newDesc.trim().length && this.newDate);
+  }
+
+  private resetValues() {
+    this.newTitle = '';
+    this.newDesc = '';
+    this.newDate = '';
+  }
+
+  private persistValues() {
+    localStorage.setItem('todos', JSON.stringify(this.todoList));
+  }
 
   addTodo() {
     if (this.newTitle.trim().length && this.newDesc && this.newDate) {
@@ -28,16 +42,13 @@ export class TodoList {
       };
       this.todoList.push(newTodo);
 
-      this.newTitle = '';
-      this.newDesc = '';
-      this.newDate = new Date();
-
-      localStorage.setItem('todos', JSON.stringify(this.todoList));
+      this.resetValues();
+      this.persistValues();
     }
   }
 
   deleteTodo(index: number) {
     this.todoList.splice(index, 1);
-    localStorage.setItem('todos', JSON.stringify(this.todoList));
+    this.persistValues();
   }
 }
