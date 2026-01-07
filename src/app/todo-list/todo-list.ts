@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Todos } from '../models/todos';
+import { TodoStorageService } from '../services/todo-storage';
 
 @Component({
   selector: 'app-todo-list',
@@ -7,16 +8,18 @@ import { Todos } from '../models/todos';
   templateUrl: './todo-list.html',
   styleUrl: './todo-list.css',
 })
-
 export class TodoList {
   todoList: Todos[] = [];
-  ngOnInit(): void {
-    let savedTodos = localStorage.getItem('todos');
-    this.todoList = savedTodos ? JSON.parse(savedTodos) : [];
-  }
+
   newTitle: string = '';
   newDesc: string = '';
   newDate: string = '';
+
+  constructor(private TodoStorage: TodoStorageService) {}
+
+  ngOnInit(): void {
+    this.todoList = this.TodoStorage.getAllTodos();
+  }
 
   get doDisableAdd(): boolean {
     return !(this.newTitle.trim().length && this.newDesc.trim().length && this.newDate);
@@ -29,7 +32,7 @@ export class TodoList {
   }
 
   private persistValues() {
-    localStorage.setItem('todos', JSON.stringify(this.todoList));
+    this.TodoStorage.storeTodos(this.todoList);
   }
 
   addTodo() {
