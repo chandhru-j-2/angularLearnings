@@ -1,11 +1,15 @@
 <p>api-learningss</p>
 
-<div *ngFor="let product of products">
-  <br />
-  <hr />
-  <h4>{{ product.title }}</h4>
-  <img [src]="product.image" />
-  <h5>{{ product.price }}</h5>
-  <p>{{ product.category }}</p>
-  <p>{{ product.description }}</p>
+<div *ngIf="isLoading">Loading...</div>
+
+<div *ngIf="!isLoading && products.length > 0">
+  <div *ngFor="let product of products">
+    <br />
+    <hr />
+    <h4>{{ product.title }}</h4>
+    <img [src]="product.image" />
+    <h5>{{ product.price }}</h5>
+    <p>{{ product.category }}</p>
+    <p>{{ product.description }}</p>
+  </div>
 </div>
