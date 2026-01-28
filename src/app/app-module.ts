@@ -8,12 +8,14 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { TodoList } from './todo-list/todo-list';
 import { ApiLearning } from './api-learning/api-learning';
+import { Home } from './home/home';
 
 @NgModule({
   declarations: [
     App,
     TodoList,
     ApiLearning,
+    Home,
   ],
   imports: [
     BrowserModule,

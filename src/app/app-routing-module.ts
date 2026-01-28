@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TodoList } from './todo-list/todo-list';
 import { ApiLearning } from './api-learning/api-learning';
+import {Home} from './home/home';
 
 const routes: Routes = [
+  {path: '', component: Home},
   {path: 'todo', component: TodoList},
   {path: 'api', component: ApiLearning},
 ];
