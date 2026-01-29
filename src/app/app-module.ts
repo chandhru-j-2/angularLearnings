@@ -9,6 +9,7 @@ import { App } from './app';
 import { TodoList } from './todo-list/todo-list';
 import { ApiLearning } from './api-learning/api-learning';
 import { Home } from './home/home';
+import { ProductCard } from './ui/product-card/product-card';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { Home } from './home/home';
     TodoList,
     ApiLearning,
     Home,
+    ProductCard,
   ],
   imports: [
     BrowserModule,
